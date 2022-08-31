@@ -1,0 +1,77 @@
+1
+XSLT_START
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" > 
+     <xsl:template match="/">  
+                    <test><v>7589</v></test>
+    </xsl:template>     
+</xsl:stylesheet>
+XSLT_END
+
+2_value
+XSLT_START
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" > 
+   <xsl:template match="/"> 
+                     <newnode2>678</newnode2> 
+   </xsl:template>
+</xsl:stylesheet>
+XSLT_END
+
+3_template
+XSLT_START
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" > 
+   <xsl:template match="/"> 
+                     <newnode2><y>year</y></newnode2> 
+   </xsl:template>
+</xsl:stylesheet>
+XSLT_END
+
+sum_value
+XSLT_START
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" > 
+   <xsl:template match="/"> 
+                     <value>
+			<xsl:value-of select="$parent/A +$parent/B"/>
+		     </value> 
+   </xsl:template>
+</xsl:stylesheet>
+XSLT_END
+
+prod_value
+XSLT_START
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" > 
+   <xsl:template match="/"> 
+                     <value>
+			<xsl:value-of select="$parent/A * $parent/B"/>
+		     </value> 
+   </xsl:template>
+</xsl:stylesheet>
+XSLT_END
+
+details_template
+XSLT_START
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" > 
+   <xsl:template match="/"> 
+                     <details>
+			<name/>
+			<gender/>
+			<age/>
+			<height/>
+		     </details> 
+   </xsl:template>
+</xsl:stylesheet>
+XSLT_END
+
+listexpand
+XSLT_START
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" > 
+   <xsl:template match="/"> 
+	<list>
+         <xsl:for-each select="(//*)[position()&lt;=$parent/count]">
+		<Item>
+			<xsl:value-of select="position()"/>
+		</Item>
+	</xsl:for-each>
+	</list>
+   </xsl:template>
+</xsl:stylesheet>
+XSLT_END
