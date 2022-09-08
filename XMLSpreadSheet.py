@@ -29,13 +29,13 @@ class StandardItem(QStandardItem):
         self.setFont(fnt)
         self.setText(txt)
 
-
-NAMCOL = 1
 TAGCOL = 0
-VALCOL = 2
+NAMCOL = 1
+DESCRIPCOL = 2
 FORMULCOL = 3
-IDCOL = 4
-NOFCOLS=5        
+INSERTOPRCOL = 4
+IDCOL = 5
+NOFCOLS=6        
 
 class Ui_MainWindow(object):
 
@@ -53,114 +53,186 @@ class Ui_MainWindow(object):
         
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 600)
+        MainWindow.resize(1062, 526)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-       
-        self.grdLayoutLeft = QtWidgets.QGridLayout()
-        self.grdLayoutLeft.setContentsMargins(2, 7, -1, -1)
-        self.grdLayoutLeft.setObjectName("grdLayoutLeft")
-        self.fileList = QtWidgets.QComboBox(self.centralwidget)
-        self.fileList.setObjectName("fileList")
-        self.grdLayoutLeft.addWidget(self.fileList, 0, 1, 1, 2)
-        
-        self.newNodeBUT = QtWidgets.QPushButton(self.centralwidget)
-        self.newNodeBUT.setObjectName("newNodeBUT")
-        self.grdLayoutLeft.addWidget(self.newNodeBUT, 1, 0, 1, 1)
-
-        
-        self.insertNodeBUT = QtWidgets.QPushButton(self.centralwidget)
-        self.insertNodeBUT.setObjectName("insertNodeBUT")
-        self.grdLayoutLeft.addWidget(self.insertNodeBUT, 1, 1, 1, 1)
-        self.ExpandTreeButton = QtWidgets.QRadioButton(self.centralwidget)
-        self.ExpandTreeButton.setObjectName("ExpandTreeButton")
-        self.grdLayoutLeft.addWidget(self.ExpandTreeButton, 0, 0, 1, 1)
-        self.RemoveNodeBUT = QtWidgets.QPushButton(self.centralwidget)
-        self.RemoveNodeBUT.setObjectName("RemoveNodeBUT")
-        self.grdLayoutLeft.addWidget(self.RemoveNodeBUT, 1, 2, 1, 1)
-        self.moveUpBUT = QtWidgets.QPushButton(self.centralwidget)
-        self.moveUpBUT.setObjectName("moveUpBUT")
-        self.grdLayoutLeft.addWidget(self.moveUpBUT, 0, 4, 1, 1)
-        self.moveDownBUT = QtWidgets.QPushButton(self.centralwidget)
-        self.moveDownBUT.setObjectName("moveDownBUT") 
-        self.grdLayoutLeft.addWidget(self.moveDownBUT, 1, 4, 1, 1)
-        self.recalculatenBUT = QtWidgets.QPushButton(self.centralwidget)
-        self.recalculatenBUT.setObjectName("recalculatenBUT") 
-        self.grdLayoutLeft.addWidget(self.recalculatenBUT, 1, 5, 1, 1)
-        
-        
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName("gridLayout")
-        
-        self.gridLayout.addLayout(self.grdLayoutLeft, 0, 0, 1, 1)
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.AcceptChange = QtWidgets.QPushButton(self.centralwidget)
+        self.AcceptChange.setObjectName("AcceptChange")
+        self.horizontalLayout_2.addWidget(self.AcceptChange)
+        self.InsertRow = QtWidgets.QPushButton(self.centralwidget)
+        self.InsertRow.setObjectName("InsertRow")
+        self.horizontalLayout_2.addWidget(self.InsertRow)
+        self.deleteRow = QtWidgets.QPushButton(self.centralwidget)
+        self.deleteRow.setObjectName("deleteRow")
+        self.horizontalLayout_2.addWidget(self.deleteRow)
+        self.MoveRowUp = QtWidgets.QPushButton(self.centralwidget)
+        self.MoveRowUp.setObjectName("MoveRowUp")
+        self.horizontalLayout_2.addWidget(self.MoveRowUp)
+        self.MoveRowDown = QtWidgets.QPushButton(self.centralwidget)
+        self.MoveRowDown.setObjectName("MoveRowDown")
+        self.horizontalLayout_2.addWidget(self.MoveRowDown)
+        self.gridLayout.addLayout(self.horizontalLayout_2, 0, 4, 1, 1)
+        spacerItem = QtWidgets.QSpacerItem(10, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem, 3, 2, 1, 1)
+        self.line_5 = QtWidgets.QFrame(self.centralwidget)
+        self.line_5.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_5.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_5.setObjectName("line_5")
+        self.gridLayout.addWidget(self.line_5, 1, 5, 1, 1)
         self.treeView = QtWidgets.QTreeView(self.centralwidget)
         self.treeView.setObjectName("treeView")
-        self.gridLayout.addWidget(self.treeView, 2, 0, 1, 1)
+        self.gridLayout.addWidget(self.treeView, 3, 0, 1, 1)
+        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayout.setContentsMargins(0, -1, -1, -1)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.newNodeBUT = QtWidgets.QPushButton(self.centralwidget)
+        self.newNodeBUT.setObjectName("newNodeBUT")
+        self.verticalLayout.addWidget(self.newNodeBUT)
+        self.RemoveNodeBUT = QtWidgets.QPushButton(self.centralwidget)
+        self.RemoveNodeBUT.setObjectName("RemoveNodeBUT")
+        self.verticalLayout.addWidget(self.RemoveNodeBUT)
+        self.moveUpBUT = QtWidgets.QPushButton(self.centralwidget)
+        self.moveUpBUT.setObjectName("moveUpBUT")
+        self.verticalLayout.addWidget(self.moveUpBUT)
+        self.moveDownBUT = QtWidgets.QPushButton(self.centralwidget)
+        self.moveDownBUT.setObjectName("moveDownBUT")
+        self.verticalLayout.addWidget(self.moveDownBUT)
+        self.insertNodeBUT = QtWidgets.QPushButton(self.centralwidget)
+        self.insertNodeBUT.setObjectName("insertNodeBUT")
+        self.verticalLayout.addWidget(self.insertNodeBUT)
+        self.gridLayout.addLayout(self.verticalLayout, 3, 1, 1, 1)
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_2.setContentsMargins(-1, 0, -1, -1)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.DescriptionEditor = QtWidgets.QTextEdit(self.centralwidget)
+        self.DescriptionEditor.setObjectName("DescriptionEditor")
+        self.verticalLayout_2.addWidget(self.DescriptionEditor)
+        self.TabularView = QtWidgets.QTableWidget(self.centralwidget)
+        self.TabularView.setObjectName("TabularView")
+        self.TabularView.setColumnCount(0)
+        self.TabularView.setRowCount(0)
+        self.verticalLayout_2.addWidget(self.TabularView)
+        self.verticalLayout_2.setStretch(0, 1)
+        self.gridLayout.addLayout(self.verticalLayout_2, 2, 4, 3, 1)
+        self.gridLayout_2 = QtWidgets.QGridLayout()
+        self.gridLayout_2.setContentsMargins(-1, 0, -1, -1)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.label_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_2.setMaximumSize(QtCore.QSize(16777215, 30))
+        self.label_2.setObjectName("label_2")
+        self.gridLayout_2.addWidget(self.label_2, 0, 1, 1, 1)
+        self.EditableFlag = QtWidgets.QCheckBox(self.centralwidget)
+        self.EditableFlag.setObjectName("EditableFlag")
+        self.gridLayout_2.addWidget(self.EditableFlag, 2, 0, 1, 1)
+        self.InsertionFlag = QtWidgets.QCheckBox(self.centralwidget)
+        self.InsertionFlag.setObjectName("InsertionFlag")
+        self.gridLayout_2.addWidget(self.InsertionFlag, 3, 0, 1, 1)
+        self.RemovableFlag = QtWidgets.QCheckBox(self.centralwidget)
+        self.RemovableFlag.setObjectName("RemovableFlag")
+        self.gridLayout_2.addWidget(self.RemovableFlag, 2, 1, 1, 1)
         self.FormulaView = QtWidgets.QTextEdit(self.centralwidget)
-        self.FormulaView.setObjectName("TextView")
-        
-
-        self.gridLayout.addWidget(self.FormulaView, 2, 1, 1, 1)
-        self.grdLayoutRight = QtWidgets.QGridLayout()
-        self.grdLayoutRight.setContentsMargins(-1, 7, -1, -1)
-        self.grdLayoutRight.setObjectName("grdLayoutRight")
-        #self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget)
-        #self.pushButton_4.setObjectName("pushButton_4")
-        #self.grdLayoutRight.addWidget(self.pushButton_4, 0, 0, 1, 1)
-        #self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
-        #self.pushButton_3.setObjectName("pushButton_3")
-        #self.grdLayoutRight.addWidget(self.pushButton_3, 0, 1, 1, 1)
-
-        
-        self.gridLayout.addLayout(self.grdLayoutRight, 0, 1, 1, 1)
-        
-        
-        
+        self.FormulaView.setMaximumSize(QtCore.QSize(16777215, 100))
+        self.FormulaView.setReadOnly(True)
+        self.FormulaView.setObjectName("FormulaView")
+        self.gridLayout_2.addWidget(self.FormulaView, 1, 0, 1, 1)
+        self.MoveFlag = QtWidgets.QCheckBox(self.centralwidget)
+        self.MoveFlag.setObjectName("MoveFlag")
+        self.gridLayout_2.addWidget(self.MoveFlag, 3, 1, 1, 1)
+        self.InsertOprView = QtWidgets.QTextEdit(self.centralwidget)
+        self.InsertOprView.setMaximumSize(QtCore.QSize(16777215, 100))
+        self.InsertOprView.setReadOnly(True)
+        self.InsertOprView.setObjectName("InsertOprView")
+        self.gridLayout_2.addWidget(self.InsertOprView, 1, 1, 1, 1)
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setMaximumSize(QtCore.QSize(16777215, 30))
+        self.label.setObjectName("label")
+        self.gridLayout_2.addWidget(self.label, 0, 0, 1, 1)
+        self.TableFlag = QtWidgets.QCheckBox(self.centralwidget)
+        self.TableFlag.setObjectName("TableFlag")
+        self.gridLayout_2.addWidget(self.TableFlag, 4, 0, 1, 1)
+        self.gridLayout.addLayout(self.gridLayout_2, 4, 0, 1, 2)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setContentsMargins(-1, -1, -1, 0)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.fileList = QtWidgets.QComboBox(self.centralwidget)
+        self.fileList.setMinimumSize(QtCore.QSize(150, 0))
+        self.fileList.setObjectName("fileList")
+        self.horizontalLayout.addWidget(self.fileList)
+        self.ExpandTreeButton = QtWidgets.QCheckBox(self.centralwidget)
+        self.ExpandTreeButton.setObjectName("ExpandTreeButton")
+        self.horizontalLayout.addWidget(self.ExpandTreeButton)
+        self.DisplayTableTree = QtWidgets.QCheckBox(self.centralwidget)
+        self.DisplayTableTree.setObjectName("DisplayTableTree")
+        self.horizontalLayout.addWidget(self.DisplayTableTree)
+        self.recalculatenBUT = QtWidgets.QPushButton(self.centralwidget)
+        self.recalculatenBUT.setObjectName("recalculatenBUT")
+        self.horizontalLayout.addWidget(self.recalculatenBUT)
+        self.gridLayout.addLayout(self.horizontalLayout, 0, 0, 1, 2)
+        self.line_2 = QtWidgets.QFrame(self.centralwidget)
+        self.line_2.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_2.setObjectName("line_2")
+        self.gridLayout.addWidget(self.line_2, 1, 0, 1, 2)
+        self.line_6 = QtWidgets.QFrame(self.centralwidget)
+        self.line_6.setFrameShape(QtWidgets.QFrame.VLine)
+        self.line_6.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_6.setObjectName("line_6")
+        self.gridLayout.addWidget(self.line_6, 0, 3, 5, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 30))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1062, 26))
         self.menubar.setObjectName("menubar")
-        self.menufile = QtWidgets.QMenu(self.menubar)
-        self.menufile.setObjectName("menufile")
-        #self.menuEdit = QtWidgets.QMenu(self.menubar)
-        #self.menuEdit.setObjectName("menuEdit")
+        self.menuFile = QtWidgets.QMenu(self.menubar)
+        self.menuFile.setObjectName("menuFile")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-        self.actionOpen = QtWidgets.QAction(MainWindow)
-        self.actionOpen.setObjectName("actionOpen")
-        #self.actionOpen_2 = QtWidgets.QAction(MainWindow)
-        #self.actionOpen_2.setObjectName("actionOpen_2")
         self.actionSave = QtWidgets.QAction(MainWindow)
         self.actionSave.setObjectName("actionSave")
-        self.actionSaveAs = QtWidgets.QAction(MainWindow)
-        self.actionSaveAs.setObjectName("actionSaveAs")
-        self.menufile.addAction(self.actionOpen)
-        #self.menufile.addAction(self.actionOpen_2)
-        self.menufile.addAction(self.actionSave)
-        self.menufile.addAction(self.actionSaveAs)
-        self.menubar.addAction(self.menufile.menuAction())
-        #self.menubar.addAction(self.menuEdit.menuAction())
+        self.menuFile.addAction(self.actionSave)
+        self.menubar.addAction(self.menuFile.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
         
+        #Callbacks
+        self.actionSave.setShortcuts(QKeySequence.keyBindings(QKeySequence.Save))
         self.treeView.clicked.connect(self.TreeItemSelected)
         self.actionSave.triggered.connect(self.Savexml)
         self.newNodeBUT.clicked.connect(self.NewNode)
         self.insertNodeBUT.clicked.connect(self.InsertNode)
         self.RemoveNodeBUT.clicked.connect(self.RemoveNode)
-        self.moveUpBUT.clicked.connect(self.MoveUp)
-        self.moveDownBUT.clicked.connect(self.MoveDown)
+        self.moveUpBUT.clicked.connect(self.MoveUpNode)
+        self.moveDownBUT.clicked.connect(self.MoveDownNode)
         self.ExpandTreeButton.toggled.connect(self.Expandtree)
+        self.DisplayTableTree.toggled.connect(self.DisplayTableTreeFunc)
+        self.AcceptChange.clicked.connect(self.UpdateDescription)
         self.recalculatenBUT.clicked.connect(self.Recalculate)
         self.DisplayQTree()
         self.FormulaView.setReadOnly(True)
+        self.InsertOprView.setReadOnly(True)
         self.fileList.addItems(self.file_list)
         self.fileList.currentIndexChanged.connect(self.LoadFile)
+        self.MoveRowDown.clicked.connect(self.MoveDownRowTable)
+        self.MoveRowUp.clicked.connect(self.MoveUpRowTable)
+        self.InsertRow.clicked.connect(self.InsertRowTable)
+        self.deleteRow.clicked.connect(self.RemoveRowTable)
+        
+        self.EditableFlag.clicked.connect(self.changeEditableFlag)
+        self.MoveFlag.clicked.connect(self.changeMoveFlag)
+        self.InsertionFlag.clicked.connect(self.changeInsertionFlag)
+        self.RemovableFlag.clicked.connect(self.changeRemovableFlag)
+        self.TableFlag.clicked.connect(self.changeTableFlag)
+     
         
     def LoadFile(self,MainWindow):
+        self.Savexml()
         self.olduid=""
         self.uid=0
         parser=etree.XMLParser(remove_blank_text=True)
@@ -173,60 +245,114 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.newNodeBUT.setText(_translate("MainWindow", "New Node"))
+        self.AcceptChange.setText(_translate("MainWindow", "ACCEPT"))
+        self.InsertRow.setText(_translate("MainWindow", "INSERT ROW"))
+        self.deleteRow.setText(_translate("MainWindow", "DEL ROW"))
+        self.MoveRowUp.setText(_translate("MainWindow", "MOVE UP"))
+        self.MoveRowDown.setText(_translate("MainWindow", "MOVE DOWN"))
+        self.newNodeBUT.setText(_translate("MainWindow", "NEW"))
+        self.RemoveNodeBUT.setText(_translate("MainWindow", "REMOVE"))
+        self.moveUpBUT.setText(_translate("MainWindow", "MOVE UP"))
+        self.moveDownBUT.setText(_translate("MainWindow", "MOVE DOWN"))
+        self.insertNodeBUT.setText(_translate("MainWindow", "INSERT NEW"))
+        self.label_2.setText(_translate("MainWindow", "Insertion Operation"))
+        self.EditableFlag.setText(_translate("MainWindow", "Editable"))
+        self.InsertionFlag.setText(_translate("MainWindow", "Allow Insertion"))
+        self.RemovableFlag.setText(_translate("MainWindow", "Removable"))
+        self.MoveFlag.setText(_translate("MainWindow", "Allow Up/Down movement"))
+        self.label.setText(_translate("MainWindow", "Formula"))
+        self.TableFlag.setText(_translate("MainWindow", "Display in tabular form"))
         self.ExpandTreeButton.setText(_translate("MainWindow", "Expand"))
-        self.RemoveNodeBUT.setText(_translate("MainWindow", "Remove Node"))
-        self.insertNodeBUT.setText(_translate("MainWindow", "Insert Node"))
-        #self.pushButton_4.setText(_translate("MainWindow", "Accept"))
-        self.moveUpBUT.setText(_translate("MainWindow", "MoveUp"))
-        self.moveDownBUT.setText(_translate("MainWindow", "MoveDown"))
-        self.recalculatenBUT.setText(_translate("MainWindow", "ReCalculate"))
-        #self.pushButton_3.setText(_translate("MainWindow", "PushButton"))
-        self.menufile.setTitle(_translate("MainWindow", "File"))
-        #self.menuEdit.setTitle(_translate("MainWindow", "Edit"))
-        self.actionOpen.setText(_translate("MainWindow", "New"))
-        #self.actionOpen_2.setText(_translate("MainWindow", "Open"))
+        self.DisplayTableTree.setText(_translate("MainWindow", "Show Table in tree"))
+        self.recalculatenBUT.setText(_translate("MainWindow", "RECALCULATE"))
+        self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.actionSave.setText(_translate("MainWindow", "Save"))
-        self.actionSaveAs.setText(_translate("MainWindow", "SaveAs"))
+
+
         
     def DisplayQTree(self):
         self.NodeMap={}
         self.model = QStandardItemModel(0,NOFCOLS)
         modelrootnode=self.model.invisibleRootItem()
-        self.ParseXML(self.root_node,modelrootnode)
+        self.ParseXML(self.root_node,modelrootnode,True)
         #print(self.NodeMap)
         self.treeView.setModel(self.model)
         self.model.setHeaderData(TAGCOL, Qt.Horizontal, "TAG")
         self.treeView.header().resizeSection(TAGCOL, 200)
         
-        self.model.setHeaderData(VALCOL, Qt.Horizontal, "VALUE")
-        self.treeView.header().resizeSection(VALCOL, 150)
+        self.model.setHeaderData(DESCRIPCOL, Qt.Horizontal, "Description(Text)")
+        self.treeView.header().resizeSection(DESCRIPCOL, 150)
         
         
         self.model.setHeaderData(IDCOL, Qt.Horizontal, "ID")
-        self.model.setHeaderData(FORMULCOL, Qt.Horizontal, "FORMULA")
+        self.model.setHeaderData(FORMULCOL, Qt.Horizontal, "Formula(Attribute)")
         self.treeView.header().resizeSection(FORMULCOL, 150)
+        self.model.setHeaderData(INSERTOPRCOL, Qt.Horizontal, "Insert(Attribute)")
+        self.treeView.header().resizeSection(INSERTOPRCOL, 150)
         
-        self.model.setHeaderData(NAMCOL, Qt.Horizontal, "NAME")
+        self.model.setHeaderData(NAMCOL, Qt.Horizontal, "Name(Attribute)")
         self.treeView.header().resizeSection(NAMCOL, 150)
         #self.treeView.hideColumn(IDCOL)
         if self.ExpandTreeButton.isChecked():
             self.treeView.expandAll()
-        if len(self.olduid)>0:
-            self.treeView.expand(self.selectednode)
-            paren=self.selectednode.parent()
-            while paren.isValid():
-                self.treeView.expand(paren)
-                paren=paren.parent()
-            self.treeView.setCurrentIndex(self.selectednode)
+        try:
+            if len(self.olduid)>0:
+                self.treeView.expand(self.selectednode)
+                paren=self.selectednode.parent()
+                while paren.isValid():
+                    self.treeView.expand(paren)
+                    paren=paren.parent()
+                self.treeView.setCurrentIndex(self.selectednode)
+                self.DisplayTable(self.NodeMap[self.olduid])
             #print(self.selectednode.data())
+        except:
+            print("error uid selection")
         self.model.dataChanged.connect(self.treeValueModified)
         self.olduid=""
         self.firsttime=False
         
-    def ParseXML(self,rootnode,modelrootnode):
+    def DisplayTable(self,rootnode):
+         self.TableParent=rootnode.xpath('@id')[0]
+         self.TableNodeMap={}
+         self.TableRowNodeMap={}
+         self.TabularView.clear()
+         if len(rootnode.xpath('@Tabular'))>0:
+                if rootnode.xpath('@Tabular')[0]=="True":
+                    self.TabularView.setVisible(True)
+                    self.MoveRowDown.setVisible(True)
+                    self.MoveRowUp.setVisible(True)
+                    self.InsertRow.setVisible(True)
+                    self.deleteRow.setVisible(True)
+                    
+                    self.DescriptionEditor.setVisible(False)
+                    self.AcceptChange.setVisible(False)
+                    self.TabularView.setRowCount(len(rootnode))
+                    i=0
+                    for row in rootnode.xpath('*'):
+                        if len(row):
+                            if i==0:
+                               self.TabularView.setColumnCount(len(row))
+                               headers=[]
+                               for cell in row.xpath('*'):
+                                   headers.append(cell.tag)
+                               self.TabularView.setHorizontalHeaderLabels(headers)
+                            j=0
+                            self.TableRowNodeMap[str(i)+"_row"]=(row.xpath('@id')[0])
+                            for cell in row.xpath('*'):
+                                    self.TabularView.setItem(i,j,QtWidgets.QTableWidgetItem(cell.text))
+                                    #self.TabularView.setCellWidget(i,j,QTextEdit(cell.text))
+                                    self.TableNodeMap[str(i)+"_"+str(j)]= (cell.xpath('@id')[0])
+                                    j=j+1
+                        i=i+1
+                    self.TabularView.itemChanged.connect(self.TableCellEdited)
+        
+    def ParseXML(self,rootnode,modelrootnode,display_flag):
         for child in rootnode.xpath('*'):
-            sub_tag = StandardItem(child.tag,12,editable=True)
+            editableflg=True
+            if len(child.xpath('@editable'))>0:
+                if child.xpath('@editable')[0]=="False":
+                    editableflg=False
+            sub_tag = StandardItem(child.tag,12,editable=editableflg)
             self_uid=""
             if self.firsttime:
                 self.NodeMap[str(self.uid)]=child
@@ -244,34 +370,53 @@ class Ui_MainWindow(object):
                     child.attrib['id']=self_uid
                     
             sub_id = StandardItem(str(self_uid),12)
-            
-            sub_name = StandardItem("",12,editable=True) 
+           
+            sub_name = StandardItem("",12,editable=editableflg) 
             if len(child.xpath('@name'))>0:
-                sub_name = StandardItem(child.xpath('@name')[0],12,editable=True)
+                sub_name = StandardItem(child.xpath('@name')[0],12,editable=editableflg)
                 
             sub_formula = StandardItem("",12,editable=True) 
             if len(child.xpath('@formula'))>0:
-                sub_formula = StandardItem(child.xpath('@formula')[0],12,editable=True)
-                
+                sub_formula = StandardItem(child.xpath('@formula')[0],12,editable=editableflg)
+              
+            sub_insertOpr = StandardItem("",12,editable=editableflg) 
+            if len(child.xpath('@insert'))>0:
+                if child.xpath('@insert')[0]=="False":
+                    sub_insertOpr = StandardItem("",12,editable=False) 
+                elif  child.xpath('@insert')[0]=="True":
+                    sub_insertOpr = StandardItem("",12,editable=editableflg) 
+                else:
+                    sub_insertOpr = StandardItem(child.xpath('@insert')[0],12,editable=editableflg)    
             #print(child.text)
-            sub_value = StandardItem("",12)
+            sub_description = StandardItem("",12,editable=editableflg)
             if (not child.text) and (len(child)>0) :
-                sub_value = StandardItem("",12)
+                sub_description = StandardItem("",12,editable=False)
             else:
-                sub_value = StandardItem(child.text,12,editable=True)
+                if (child.text):
+                    if len(child.text)>100 :
+                        sub_description = StandardItem(child.text[0:20]+"..",12,editable=False)
+                    else:
+                        sub_description = StandardItem(child.text,12,editable=editableflg)
 
             items=[sub_tag]*NOFCOLS
             items[TAGCOL]=sub_tag
-            items[VALCOL]=sub_value
+            items[DESCRIPCOL]=sub_description
             items[IDCOL]=sub_id
             items[FORMULCOL]=sub_formula
             items[NAMCOL]=sub_name
-            modelrootnode.appendRow(items)
-                
-            if str(self_uid)==self.olduid:
-                self.selectednode=self.model.indexFromItem(modelrootnode.child(modelrootnode.rowCount()-1))
+            items[INSERTOPRCOL]=sub_insertOpr
+            if len(rootnode.xpath('@Tabular'))>0:
+                if rootnode.xpath('@Tabular')[0]=="True":
+                    display_flag=False
+            if self.DisplayTableTree.isChecked():
+                display_flag=True
+            if display_flag :
+                modelrootnode.appendRow(items)
+                if str(self_uid)==self.olduid:
+                    self.selectednode=self.model.indexFromItem(modelrootnode.child(modelrootnode.rowCount()-1))
+
             if len(child):
-                self.ParseXML(child,sub_tag)       
+                self.ParseXML(child,sub_tag,display_flag)       
         
         
     def Expandtree(self):
@@ -280,94 +425,309 @@ class Ui_MainWindow(object):
         else:
             self.treeView.collapseAll()    
             
+            
+    def changeEditableFlag(self):  
+        if len(self.treeView.selectionModel().selectedRows(column=IDCOL))==0:
+            return
+        uid=self.treeView.selectionModel().selectedRows(column=IDCOL)[0].data()
+        nodeSelected=self.NodeMap[uid]
+        if self.EditableFlag.isChecked():
+            nodeSelected.attrib['editable']="True"
+        else:
+            nodeSelected.attrib['editable']="False"
+        self.DisplayQTree()
+        
+        
+    def changeMoveFlag(self):  
+        if len(self.treeView.selectionModel().selectedRows(column=IDCOL))==0:
+            return
+        uid=self.treeView.selectionModel().selectedRows(column=IDCOL)[0].data()
+        nodeSelected=self.NodeMap[uid]
+        if self.MoveFlag.isChecked():
+            nodeSelected.attrib['move']="True"
+        else:
+            nodeSelected.attrib['move']="False"
+        self.DisplayQTree()
+        
+    def changeInsertionFlag(self): 
+        if len(self.treeView.selectionModel().selectedRows(column=IDCOL))==0:
+            return
+        uid=self.treeView.selectionModel().selectedRows(column=IDCOL)[0].data()
+        nodeSelected=self.NodeMap[uid]
+        if self.InsertionFlag.isChecked():
+             nodeSelected.attrib['insert']="True"
+        else:
+             nodeSelected.attrib['insert']="False"
+        self.DisplayQTree()
+        
+    def changeRemovableFlag(self):
+        if len(self.treeView.selectionModel().selectedRows(column=IDCOL))==0:
+            return
+        uid=self.treeView.selectionModel().selectedRows(column=IDCOL)[0].data()
+        nodeSelected=self.NodeMap[uid]
+        if self.RemovableFlag.isChecked():
+            nodeSelected.attrib['remove']="True"
+        else:
+            nodeSelected.attrib['remove']="False" 
+        self.DisplayQTree()
+        
+    def changeTableFlag(self):
+        if len(self.treeView.selectionModel().selectedRows(column=IDCOL))==0:
+            return
+        uid=self.treeView.selectionModel().selectedRows(column=IDCOL)[0].data()
+        nodeSelected=self.NodeMap[uid]
+        if self.TableFlag.isChecked():
+            nodeSelected.attrib['Tabular']="True"
+        else:
+            nodeSelected.attrib['Tabular']="False" 
+        self.DisplayQTree()
+            
+    def DisplayTableTreeFunc(self):
+        self.DisplayQTree()
+        
     #Manual operation
     def RemoveNode(self):        
         if len(self.treeView.selectionModel().selectedRows(column=IDCOL))==0:
             return
-        
         uid=self.treeView.selectionModel().selectedRows(column=IDCOL)[0].data()
-        self.olduid=str(int(uid)-1)
         nodeSelected=self.NodeMap[uid]
+        self.olduid=nodeSelected.getparent().xpath('@id')[0]
+        self.RemoveNodeXML(uid)
+        
+    #Manual operation
+    def RemoveRowTable(self):        
+        if len(self.TabularView.selectionModel().selectedRows())==0:
+            QMessageBox.critical(MainWindow,"INFO","Select Row")
+            return
+        index=self.TabularView.selectionModel().selectedRows()[0]
+        row=index.row()
+        uid=self.TableRowNodeMap[str(row)+"_row"]
+        self.olduid=self.TableParent
+        self.RemoveNodeXML(uid)
+    
+    def RemoveNodeXML(self,uid): 
+        nodeSelected=self.NodeMap[uid]
+        if len(nodeSelected.xpath('@remove'))>0:
+            insertOpr = nodeSelected.xpath('@remove')[0].strip()
+            if insertOpr=="False":
+                return
+        
         nodeSelected.getparent().remove(nodeSelected)
         self.DisplayQTree()
-      
-    #Manual operation
+     
     def InsertNode(self):
         if len(self.treeView.selectionModel().selectedRows(column=IDCOL))==0:
             return
         uid=self.treeView.selectionModel().selectedRows(column=IDCOL)[0].data()
-        nodeSelected=self.NodeMap[uid]
         self.olduid=uid
-        xml_node = etree.Element("newnode")
-        nodeSelected.insert(len(nodeSelected),xml_node)
+        
+        self.Insert_NodeXML(uid,-1)
+     
+    def InsertRowTable(self):
+        if len(self.TabularView.selectionModel().selectedRows())==0:
+            QMessageBox.critical(MainWindow,"INFO","Select Row")
+            return
+        index=self.TabularView.selectionModel().selectedRows()[0]
+        row=index.row()
+        uid=self.TableParent
+        self.olduid=self.TableParent
+        self.Insert_NodeXML(uid,row)
+        
+    #Manual operation
+    def Insert_NodeXML(self,uid,row):
+        nodeSelected=self.NodeMap[uid]
+        #if len(self.treeView.selectionModel().selectedRows(column=IDCOL))==0:
+        #    return
+        #uid=self.treeView.selectionModel().selectedRows(column=IDCOL)[0].data()
+        #self.olduid=uid
+        #nodeSelected=self.NodeMap[uid]
+        if len(nodeSelected.xpath('@insert'))>0:
+            insertOpr = nodeSelected.xpath('@insert')[0].strip()
+            if insertOpr=="False":
+                return
+            elif insertOpr=="True" or not (insertOpr in self.Formulas):
+                xml_node = etree.Element("newnode")
+                xml_node.attrib['formula']=""
+                xml_node.attrib['insert']="True"
+                xml_node.attrib['move']="True"
+                xml_node.attrib['remove']="True"
+                xml_node.attrib['editable']="True"
+                nodeSelected.insert(len(nodeSelected),xml_node)
+                self.DisplayQTree()
+                return
+                
+            formulaContent=self.Formulas[insertOpr]
+            document=self.documentName[insertOpr]
+            if document.replace("/","\\").strip()==self.currentfile.replace("/","\\").strip() :
+                document=""
+            rootnode=self.root_node    
+            parentpath=rootnode.getpath(nodeSelected.getparent())
+            formulaContent=formulaContent.replace("$this",rootnode.getpath(nodeSelected))
+            formulaContent=formulaContent.replace("$parent",parentpath)
+            try:
+                styleroot = etree.fromstring(formulaContent)
+                transform = etree.XSLT(styleroot)
+                inputnode=rootnode
+                if len(document)>0:
+                    parser=etree.XMLParser(remove_blank_text=True)
+                    inputnode=etree.parse(document,parser) 
+                newdom = transform(inputnode)
+                newxml = etree.fromstring(etree.tostring(newdom))
+                if row==-1:
+                    nodeSelected.insert(len(nodeSelected),newxml)
+                else:
+                    nodeSelected.insert(row+1,newxml)
+            except etree.XMLSyntaxError as error:
+                QMessageBox.critical(MainWindow,"ERROR","insertopr "+ formulaIdentity+"\n'database/rules.txt'\n"+str(error))
+                return
+            except etree.XSLTParseError as error:
+                QMessageBox.critical(MainWindow,"ERROR","insertopr "+ formulaIdentity+"\n'database/rules.txt'\n"+str(error))
+                return
+        else:
+            xml_node = etree.Element("newnode")
+            xml_node.attrib['formula']=""
+            xml_node.attrib['insert']="True"
+            xml_node.attrib['move']="True"
+            xml_node.attrib['remove']="True"
+            xml_node.attrib['editable']="True"
+            nodeSelected.insert(len(nodeSelected),xml_node) #<<<<
         self.DisplayQTree()
           
     #Manual operation
     def NewNode(self):
         if len(self.treeView.selectionModel().selectedRows(column=IDCOL))==0:
+            self.Insert_NodeXML(self.root_node.getroot())
             return
-        uid=self.treeView.selectionModel().selectedRows(column=IDCOL)[0].data()
-        nodeSelected=self.NodeMap[uid]
-        self.olduid=uid
-        xml_node = etree.Element("newnode")
-        nodeSelected.getparent().insert(len(nodeSelected),xml_node)
-        self.DisplayQTree()
+        index=self.treeView.selectionModel().selectedRows(column=IDCOL)[0]
+        uid=index.data()
+        row=index.row()
+        nodeSelected=self.NodeMap[uid].getparent()
+        self.Insert_NodeXML(nodeSelected.xpath('@id')[0],row)
+        #if len(nodeSelected.getparent().xpath('@insert'))>0:
+        #    insertOpr = nodeSelected.getparent().xpath('@insert')[0].strip()
+        #    if insertOpr=="False":
+        #        return
+        self.olduid=uid 
+        #xml_node = etree.Element("newnode")
+        #nodeSelected.getparent().insert(len(nodeSelected),xml_node)
+        #self.DisplayQTree()
         
     #Manual operation   
-    def MoveUp(self):
+    def MoveUpNode(self):
         if len(self.treeView.selectionModel().selectedRows(column=IDCOL))==0:
             return
         index=self.treeView.selectionModel().selectedRows(column=IDCOL)[0]
         uid=index.data()
         row=index.row()
-        nodeSelected=self.NodeMap[uid]
         self.olduid=uid
+        self.MoveUpNodeXML(uid,row)
+        
+    def MoveUpRowTable(self):
+        if len(self.TabularView.selectionModel().selectedRows())==0:
+            QMessageBox.critical(MainWindow,"INFO","Select Row")
+            return
+        index=self.TabularView.selectionModel().selectedRows()[0]
+        row=index.row()
+        uid=self.TableRowNodeMap[str(row)+"_row"]
+        self.olduid=self.TableParent
+        self.MoveUpNodeXML(uid,row)
+        
+    def MoveUpNodeXML(self,uid,row):
+        nodeSelected=self.NodeMap[uid]
+        if len(nodeSelected.xpath('@move'))>0:
+            moveOpr = nodeSelected.xpath('@move')[0].strip()
+            if moveOpr=="False":
+                return
+        
         #xml_node = etree.Element("newnodeok")
         print("======================")
         print(row)
         print(etree.tostring(nodeSelected.getparent()).decode())
-        if index.row() > 0 :
+        if row > 0 :
             nodeSelected.getparent().insert(row-1,nodeSelected)
-            self.model.removeRow(index.row()+1, parent=index.parent())
+            #self.model.removeRow(row+1, parent=index.parent())
         self.DisplayQTree()
         
     #Manual operation
-    def MoveDown(self):
+    def MoveDownNode(self):
         if len(self.treeView.selectionModel().selectedRows(column=IDCOL))==0:
             return
         index=self.treeView.selectionModel().selectedRows(column=IDCOL)[0]
         uid=index.data()
         row=index.row()
-        nodeSelected=self.NodeMap[uid]
         self.olduid=uid
+        self.MoveDownNodeXML(uid,row)
+        
+    #Manual operation
+    def MoveDownRowTable(self):
+        if len(self.TabularView.selectionModel().selectedRows())==0:
+            QMessageBox.critical(MainWindow,"INFO","Select Row")
+            return
+        index=self.TabularView.selectionModel().selectedRows()[0]
+        row=index.row()
+        uid=self.TableRowNodeMap[str(row)+"_row"]
+        self.olduid=self.TableParent
+        self.MoveDownNodeXML(uid,row)
+        
+    def MoveDownNodeXML(self,uid,row):
+        nodeSelected=self.NodeMap[uid]
+        if len(nodeSelected.xpath('@move'))>0:
+            moveOpr = nodeSelected.xpath('@move')[0].strip()
+            if moveOpr=="False":
+                return
+        
         #xml_node = etree.Element("newnodeok")
         print("======================")
 
         print(row)
         print(etree.tostring(nodeSelected.getparent()).decode())
-        if index.row()+2 <= len(nodeSelected.getparent().getchildren()):
+        if row+2 <= len(nodeSelected.getparent().getchildren()):
             nodeSelected.getparent().insert(row+2,nodeSelected)
-            self.model.removeRow(index.row(), parent=index.parent())
+            #self.model.removeRow(row, parent=index.parent())
         self.DisplayQTree()
 
     #Manual operation   
     def treeValueModified(self,topleft,bottomright,roles):
         uid=self.treeView.selectionModel().selectedRows(column=IDCOL)[0].data()
-        if topleft.column()==TAGCOL :
-            self.NodeMap[uid].tag=topleft.data()
-        elif  topleft.column()==VALCOL :
-            self.NodeMap[uid].text=topleft.data()
-        elif  topleft.column()==FORMULCOL :
-            self.NodeMap[uid].attrib['formula']=topleft.data()
-        elif topleft.column()==NAMCOL :
-            self.NodeMap[uid].attrib['name']=topleft.data()
-        else:
-             print("wrong column no")
-             return
-        
+        self.olduid=uid
+        text=topleft.data()
+        try:
+            if topleft.column()==TAGCOL :
+                text=text.replace(" ","_")
+                self.NodeMap[uid].tag=text
+            elif  topleft.column()==DESCRIPCOL :
+                self.NodeMap[uid].text=text
+            elif  topleft.column()==FORMULCOL :
+                text=text.replace(" ","_")
+                self.NodeMap[uid].attrib['formula']=text
+            elif topleft.column()==NAMCOL :
+                self.NodeMap[uid].attrib['name']=text
+            elif topleft.column()==INSERTOPRCOL :
+                text=text.replace(" ","_")
+                self.NodeMap[uid].attrib['insert']=text
+            else:
+                 print("wrong column no")
+                 return
+        except :
+                QMessageBox.critical(MainWindow,"ERROR","error")
+                return
         self.Recalculate()
-
         
+    def TableCellEdited(self,item):
+        row=item.row()
+        col=item.column()
+        #print(str(row)+"_"+str(col)+" modified")
+        if str(row)+"_"+str(col) in self.TableNodeMap:
+            uid=self.TableNodeMap[str(row)+"_"+str(col)]
+            self.NodeMap[uid].text=item.text()
+            self.Recalculate()
+    
+    def UpdateDescription(self):
+        
+        uid=self.treeView.selectionModel().selectedRows(column=IDCOL)[0].data()
+        self.olduid=uid
+        self.NodeMap[uid].text=ui.DescriptionEditor.toPlainText()
+        self.Recalculate()
 
     #for expanding as per template        
     def mergeNode(self,aparent, bparent):
@@ -381,24 +741,75 @@ class Ui_MainWindow(object):
      
     #for updating formulaviewer
     def TreeItemSelected(self,val):
+        self.DescriptionEditor.setVisible(True)
+        self.AcceptChange.setVisible(True)
+        self.TabularView.setVisible(False)
+        self.MoveRowDown.setVisible(False)
+        self.MoveRowUp.setVisible(False)
+        self.InsertRow.setVisible(False)
+        self.deleteRow.setVisible(False)
+        
+        self.EditableFlag.setChecked(True)
+        self.MoveFlag.setChecked(True)
+        self.InsertionFlag.setChecked(True)
+        self.RemovableFlag.setChecked(True)
+        self.TableFlag.setChecked(False)
         #print("-----------------------------------------")
         #print("clicked -"+val.data())
         #print(val.child(0,1))
         #print(val.row())
         #print(val.column())
         #print(self.treeView.selectionModel().selectedRows(column=TAGCOL)[0].data())
+        uid=self.treeView.selectionModel().selectedRows(column=IDCOL)[0].data()
+        self.DisplayTable(self.NodeMap[uid])
+        
         formula=self.treeView.selectionModel().selectedRows(column=FORMULCOL)[0].data()
         if formula in self.Formulas:
-            self.FormulaView.setText(self.Formulas[formula])
+            self.FormulaView.setText(self.documentName[formula]+"\n"+self.Formulas[formula])
         else:
             self.FormulaView.setText("")
+        insertoper=self.treeView.selectionModel().selectedRows(column=INSERTOPRCOL)[0].data()
+        if insertoper in self.Formulas:
+            self.InsertOprView.setText(self.documentName[insertoper]+"\n"+self.Formulas[insertoper])
+        else:
+            self.InsertOprView.setText("")
         
+        index=self.treeView.selectionModel().selectedRows(column=IDCOL)[0]
+        uid=index.data()
+        nodeSelected=self.NodeMap[uid]
+
+        self.DescriptionEditor.setText(nodeSelected.text)
+        
+        if (not nodeSelected.text) and (len(nodeSelected)>0) :
+            self.DescriptionEditor.setReadOnly(True)
+        else:
+            self.DescriptionEditor.setReadOnly(False)
+            
+        if len(nodeSelected.xpath('@editable'))>0:
+                if nodeSelected.xpath('@editable')[0]=="False":
+                    self.DescriptionEditor.setReadOnly(True)
+                    self.EditableFlag.setChecked(False)
+        if len(nodeSelected.xpath('@insert'))>0:
+                if nodeSelected.xpath('@insert')[0]=="False":
+                    self.InsertionFlag.setChecked(False)            
+        if len(nodeSelected.xpath('@move'))>0:
+                if nodeSelected.xpath('@move')[0]=="False":
+                    self.MoveFlag.setChecked(False)   
+        if len(nodeSelected.xpath('@remove'))>0:
+                if nodeSelected.xpath('@remove')[0]=="False":
+                    self.RemovableFlag.setChecked(False) 
+        if len(nodeSelected.xpath('@Tabular'))>0:
+                if nodeSelected.xpath('@Tabular')[0]=="True":
+                    self.TableFlag.setChecked(True)            
         #print("-----------------------------------------")
         
 
         
         
     def Recalculate(self):
+        if len(self.treeView.selectionModel().selectedRows(column=IDCOL))>0:        
+            uid=self.treeView.selectionModel().selectedRows(column=IDCOL)[0].data()
+            self.olduid=uid
         self.ProcessXml(self.root_node)
         self.DisplayQTree()
         
@@ -409,6 +820,7 @@ class Ui_MainWindow(object):
     #-otherwise replace operation is carried out
     def ProcessXml(self, rootnode):
         self.Formulas={}
+        self.documentName={}
         formulafile=open('database/rules.txt','r')
         formulas=formulafile.read().split('XSLT_END')
         for formula in formulas:
@@ -418,12 +830,21 @@ class Ui_MainWindow(object):
             if len(parts)<2:
                 continue
             formulaIdentity=parts[0].strip()
+            parts2=formulaIdentity.split("DOCUMENT:")
+            document=""
+            if len(parts2)>1:
+                formulaIdentity=parts2[0].strip()
+                document=parts2[1].strip()
+            if document.replace("/","\\").strip()==self.currentfile.replace("/","\\").strip() :
+                document=""
             formulaContent=parts[1]
             self.Formulas[formulaIdentity]=formulaContent
+            self.documentName[formulaIdentity]=document
             nodestoexpand=rootnode.findall("//*[@formula='"+formulaIdentity+"']")
             for node in nodestoexpand:
                 nodeName=""
                 nodeValue=""
+                nodeid=node.xpath('@id')[0]
                 if len(node.xpath('@name'))>0:
                     nodeName=node.xpath('@name')[0]
                 if len(node.xpath('@value'))>0:
@@ -434,9 +855,13 @@ class Ui_MainWindow(object):
                 try:
                     styleroot = etree.fromstring(formulaContent)
                     transform = etree.XSLT(styleroot)
-                    newdom = transform(rootnode)
+                    inputnode=rootnode
+                    if len(document)>0:
+                        parser=etree.XMLParser(remove_blank_text=True)
+                        inputnode=etree.parse(document,parser) 
+                    newdom = transform(inputnode)
                     newxml = etree.fromstring(etree.tostring(newdom))
-                    print(etree.tostring(newdom))
+                    #print(etree.tostring(newdom))
                     if formulaIdentity.find("_value")>-1:
                         new_value=newxml.text
                         node.text=new_value
@@ -450,6 +875,7 @@ class Ui_MainWindow(object):
                     node.getparent().replace(node,newxml)
                     newxml.attrib['formula']=formulaIdentity
                     newxml.attrib['name']=nodeName
+                    newxml.attrib['id']=nodeid
                     newxml.tag=nodeTag
                 except etree.XMLSyntaxError as error:
                     QMessageBox.critical(MainWindow,"ERROR","formula "+ formulaIdentity+"\n'database/rules.txt'\n"+str(error))
@@ -462,10 +888,9 @@ class Ui_MainWindow(object):
     def Savexml(self):
         #self.root_node.write('database/db.xml',encoding="utf-8",pretty_print=True)
         f=open(self.currentfile,'w')
-        
         f.write(etree.tostring(self.root_node,pretty_print=True).decode())
         f.close()
-        print("saving database/db.xml")
+        print("saving "+self.currentfile)
         
         
     
@@ -476,4 +901,6 @@ if __name__ == "__main__":
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
-    sys.exit(app.exec_())
+    ret=app.exec_()
+    ui.Savexml()
+    sys.exit(ret)

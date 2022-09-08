@@ -1,0 +1,87 @@
+<document>
+  <INTRODUCTION formula="" insert="True" move="True" remove="True" editable="True" id="0"/>
+  <Purpose formula="" insert="True" move="True" remove="True" editable="True" id="1">The purpose of this document is to conduct the validation of the complete system. It also provides details of the test procedures to check conformance of the complete system, as implemented, to the system requirements</Purpose>
+  <Scope formula="" insert="True" move="True" remove="True" editable="True" id="2">The purpose is to demonstrate the correct implementation of the functional requirements given in Appendix-A, by the software executed in control computer and OWS. It also provides expected test duration and test team requirements along with their roles and responsibilities for carrying out this system testing. It also confirms that the system Hardware and Software is built according to the System Build document. It also verifies that the description in the User Document (UD) is as implemented in the system.</Scope>
+  <Definitions_Abbreviations_and_Notations formula="" insert="True" move="True" remove="True" editable="True" id="3">
+    <Definitions formula="" insert="True" move="True" remove="True" editable="True" id="4"/>
+    <Abbreviations formula="" insert="abbreviation" move="True" remove="True" editable="True" Tabular="True" id="5">
+      <item insert="False" id="6">
+        <Srno id="7">5</Srno>
+        <Abbreviation insert="False" move="False" remove="False" id="8">547</Abbreviation>
+        <Description insert="False" move="False" remove="False" id="9"/>
+      </item>
+      <item insert="False" id="10">
+        <Srno id="11">7</Srno>
+        <Abbreviation insert="False" move="False" remove="False" id="12">87</Abbreviation>
+        <Description insert="False" move="False" remove="False" id="13"/>
+      </item>
+      <item insert="False" id="14">
+        <Srno id="15">16</Srno>
+        <Abbreviation insert="False" move="False" remove="False" id="16">klk</Abbreviation>
+        <Description insert="False" move="False" remove="False" id="17">dfd</Description>
+      </item>
+      <item insert="False" id="18">
+        <Srno id="19">8</Srno>
+        <Abbreviation insert="False" move="False" remove="False" id="20"/>
+        <Description insert="False" move="False" remove="False" id="21"/>
+      </item>
+      <item insert="False" id="22">
+        <Srno id="23">17</Srno>
+        <Abbreviation insert="False" move="False" remove="False" id="24">edrr</Abbreviation>
+        <Description insert="False" move="False" remove="False" id="25">df</Description>
+      </item>
+      <item insert="False" id="26">
+        <Srno id="27">9</Srno>
+        <Abbreviation insert="False" move="False" remove="False" id="28"/>
+        <Description insert="False" move="False" remove="False" id="29"/>
+      </item>
+      <item insert="False" id="30">
+        <Srno id="31">2</Srno>
+        <Abbreviation insert="False" move="False" remove="False" id="32">CCS</Abbreviation>
+        <Description insert="False" move="False" remove="False" id="33">Central Clock System</Description>
+      </item>
+      <item insert="False" id="34">
+        <Srno id="35">8</Srno>
+        <Abbreviation insert="False" move="False" remove="False" id="36">69</Abbreviation>
+        <Description insert="False" move="False" remove="False" id="37"/>
+      </item>
+      <item insert="False" id="38">
+        <Srno id="39">10</Srno>
+        <Abbreviation insert="False" move="False" remove="False" id="40"/>
+        <Description insert="False" move="False" remove="False" id="41"/>
+      </item>
+      <item insert="False" id="42">
+        <Srno id="43">9</Srno>
+        <Abbreviation insert="False" move="False" remove="False" id="44">45</Abbreviation>
+        <Description insert="False" move="False" remove="False" id="45"/>
+      </item>
+    </Abbreviations>
+    <Notations formula="" insert="True" move="True" remove="True" editable="True" id="46">References listed below are referred with the number in square brackets.</Notations>
+    <References formula="" insert="True" move="True" remove="True" editable="True" id="47">
+      <RT formula="" insert="True" move="True" remove="True" editable="True" id="48">System Validation Plan for I&amp;C of Inventory addition and Recovery system,700MWe/66603/PHT/SVPL/01-15</RT>
+      <newnode formula="" insert="True" move="True" remove="True" editable="True" id="49"/>
+      <newnode formula="" insert="True" move="True" remove="True" editable="True" id="50">8</newnode>
+      <newnode formula="" insert="True" move="True" remove="True" editable="True" id="51">CSPI__</newnode>
+      <newnode formula="" insert="True" move="True" remove="True" editable="True" id="52"/>
+    </References>
+  </Definitions_Abbreviations_and_Notations>
+  <Overview formula="" insert="True" move="True" remove="True" editable="True" id="53">Section-1 describes general details of this document and the references. Section-2 gives actual test duration, test team requirements, roles and responsibility of the validation team etc. Section-3 describes Infrastructure and resource and test set-up requirements. Section-4 brings detailed test procedure of validation testing. Appendix follows Section-4.</Overview>
+  <TEST_TEAM_DETAILS formula="" insert="testteam" move="True" remove="True" editable="True" Tabular="True" id="54">
+    <person insert="False" id="55">
+      <Grade insert="False" move="False" remove="False" id="56">][]]
+;k;kk</Grade>
+      <Section insert="False" move="False" remove="False" id="57">section</Section>
+      <Duration insert="False" move="False" remove="False" id="58">rer</Duration>
+    </person>
+    <person insert="False" id="59" name="y">
+      <Grade insert="False" move="False" remove="False" id="60">ferf</Grade>
+      <Section insert="False" move="False" remove="False" id="61">58</Section>
+      <Duration insert="False" move="False" remove="False" id="62">fe</Duration>
+    </person>
+    <person insert="False" id="63">
+      <Grade insert="False" move="False" remove="False" id="64"/>
+      <Section insert="False" move="False" remove="False" id="65"/>
+      <Duration insert="False" move="False" remove="False" id="66"/>
+    </person>
+  </TEST_TEAM_DETAILS>
+</document>

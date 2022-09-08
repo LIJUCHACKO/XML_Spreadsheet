@@ -37,6 +37,7 @@ XSLT_START
 XSLT_END
 
 prod_value
+DOCUMENT:database/db2.xml
 XSLT_START
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" > 
    <xsl:template match="/"> 
@@ -72,6 +73,44 @@ XSLT_START
 		</Item>
 	</xsl:for-each>
 	</list>
+   </xsl:template>
+</xsl:stylesheet>
+XSLT_END
+
+insertoper
+XSLT_START
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" > 
+   <xsl:template match="/"> 
+                     <person insert="False" >
+			<name insert="False" move="False" remove="False" />
+			<designation insert="False" move="False" remove="False" />
+		     </person> 
+   </xsl:template>
+</xsl:stylesheet>
+XSLT_END
+
+abbreviation
+XSLT_START
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" > 
+   <xsl:template match="/"> 
+                     <item insert="False" >
+			<Srno> <xsl:value-of select="count(/document/Definitions_Abbreviations_and_Notations/Abbreviations/item)+1"/></Srno>
+			<Abbreviation insert="False" move="False" remove="False" />
+			<Description insert="False" move="False" remove="False" />
+		     </item> 
+   </xsl:template>
+</xsl:stylesheet>
+XSLT_END
+
+testteam
+XSLT_START
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" > 
+   <xsl:template match="/"> 
+                     <person insert="False" >
+			<Grade insert="False" move="False" remove="False" />
+			<Section insert="False" move="False" remove="False" />
+			<Duration insert="False" move="False" remove="False" />
+		     </person> 
    </xsl:template>
 </xsl:stylesheet>
 XSLT_END
