@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1062</width>
-    <height>526</height>
+    <height>597</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -100,6 +100,19 @@
        </widget>
       </item>
       <item>
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
        <widget class="QPushButton" name="moveUpBUT">
         <property name="text">
          <string>MOVE UP</string>
@@ -114,9 +127,57 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="moveOutBUT">
+        <property name="text">
+         <string>MOVE OUT</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
        <widget class="QPushButton" name="insertNodeBUT">
         <property name="text">
          <string>INSERT NEW</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QPushButton" name="cutNode">
+          <property name="text">
+           <string>CUT</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="IDCopied">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="PasteButton">
+        <property name="text">
+         <string>PASTE</string>
         </property>
        </widget>
       </item>
@@ -221,7 +282,7 @@
        </widget>
       </item>
       <item row="4" column="0">
-       <widget class="QCheckBox" name="TabkeFlag">
+       <widget class="QCheckBox" name="TableFlag">
         <property name="text">
          <string>Display in tabular form</string>
         </property>

@@ -95,15 +95,36 @@ class Ui_MainWindow(object):
         self.RemoveNodeBUT = QtWidgets.QPushButton(self.centralwidget)
         self.RemoveNodeBUT.setObjectName("RemoveNodeBUT")
         self.verticalLayout.addWidget(self.RemoveNodeBUT)
+        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout.addItem(spacerItem1)
         self.moveUpBUT = QtWidgets.QPushButton(self.centralwidget)
         self.moveUpBUT.setObjectName("moveUpBUT")
         self.verticalLayout.addWidget(self.moveUpBUT)
         self.moveDownBUT = QtWidgets.QPushButton(self.centralwidget)
         self.moveDownBUT.setObjectName("moveDownBUT")
         self.verticalLayout.addWidget(self.moveDownBUT)
+        self.moveOutBUT = QtWidgets.QPushButton(self.centralwidget)
+        self.moveOutBUT.setObjectName("moveOutBUT")
+        self.verticalLayout.addWidget(self.moveOutBUT)
+        spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout.addItem(spacerItem2)
         self.insertNodeBUT = QtWidgets.QPushButton(self.centralwidget)
         self.insertNodeBUT.setObjectName("insertNodeBUT")
         self.verticalLayout.addWidget(self.insertNodeBUT)
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_3.setContentsMargins(-1, -1, -1, 0)
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        self.cutNode = QtWidgets.QPushButton(self.centralwidget)
+        self.cutNode.setObjectName("cutNode")
+        self.horizontalLayout_3.addWidget(self.cutNode)
+        self.IDCopied = QtWidgets.QLabel(self.centralwidget)
+        self.IDCopied.setText("")
+        self.IDCopied.setObjectName("IDCopied")
+        self.horizontalLayout_3.addWidget(self.IDCopied)
+        self.verticalLayout.addLayout(self.horizontalLayout_3)
+        self.PasteButton = QtWidgets.QPushButton(self.centralwidget)
+        self.PasteButton.setObjectName("PasteButton")
+        self.verticalLayout.addWidget(self.PasteButton)
         self.gridLayout.addLayout(self.verticalLayout, 3, 1, 1, 1)
         self.verticalLayout_2 = QtWidgets.QVBoxLayout()
         self.verticalLayout_2.setContentsMargins(-1, 0, -1, -1)
@@ -229,7 +250,9 @@ class Ui_MainWindow(object):
         self.InsertionFlag.clicked.connect(self.changeInsertionFlag)
         self.RemovableFlag.clicked.connect(self.changeRemovableFlag)
         self.TableFlag.clicked.connect(self.changeTableFlag)
-     
+        self.cutNode.clicked.connect(self.Cut_NodeAction)
+        self.PasteButton.clicked.connect(self.Paste_NodeAction)
+        self.moveOutBUT.clicked.connect(self.MoveOutNodeXML)
         
     def LoadFile(self,MainWindow):
         self.Savexml()
@@ -254,7 +277,10 @@ class Ui_MainWindow(object):
         self.RemoveNodeBUT.setText(_translate("MainWindow", "REMOVE"))
         self.moveUpBUT.setText(_translate("MainWindow", "MOVE UP"))
         self.moveDownBUT.setText(_translate("MainWindow", "MOVE DOWN"))
+        self.moveOutBUT.setText(_translate("MainWindow", "MOVE OUT"))
         self.insertNodeBUT.setText(_translate("MainWindow", "INSERT NEW"))
+        self.cutNode.setText(_translate("MainWindow", "CUT"))
+        self.PasteButton.setText(_translate("MainWindow", "PASTE"))
         self.label_2.setText(_translate("MainWindow", "Insertion Operation"))
         self.EditableFlag.setText(_translate("MainWindow", "Editable"))
         self.InsertionFlag.setText(_translate("MainWindow", "Allow Insertion"))
@@ -622,6 +648,31 @@ class Ui_MainWindow(object):
         self.olduid=uid
         self.MoveUpNodeXML(uid,row)
         
+    def Cut_NodeAction(self):
+        if len(self.treeView.selectionModel().selectedRows(column=IDCOL))==0:
+            return
+        index=self.treeView.selectionModel().selectedRows(column=IDCOL)[0]
+        uid=index.data()
+        nodeSelected=self.NodeMap[uid]
+        if len(nodeSelected.xpath('@move'))>0:
+            moveOpr = nodeSelected.xpath('@move')[0].strip()
+            if moveOpr=="False":
+                self.IDCopied.setText("")
+                return
+        self.IDCopied.setText(uid)
+        
+    def Paste_NodeAction(self):
+        if len(self.treeView.selectionModel().selectedRows(column=IDCOL))==0:
+            return
+        index=self.treeView.selectionModel().selectedRows(column=IDCOL)[0]
+        uid=index.data()
+        nodeSelected=self.NodeMap[uid]
+        if self.IDCopied.text() in self.NodeMap:
+            nodeToPaste=self.NodeMap[self.IDCopied.text()]
+            nodeSelected.insert(0,nodeToPaste)
+            self.DisplayQTree()
+        self.IDCopied.setText("")
+        
     def MoveUpRowTable(self):
         if len(self.TabularView.selectionModel().selectedRows())==0:
             QMessageBox.critical(MainWindow,"INFO","Select Row")
@@ -640,14 +691,34 @@ class Ui_MainWindow(object):
                 return
         
         #xml_node = etree.Element("newnodeok")
-        print("======================")
-        print(row)
-        print(etree.tostring(nodeSelected.getparent()).decode())
+#        print("======================")
+#        print(row)
+#        print(etree.tostring(nodeSelected.getparent()).decode())
         if row > 0 :
             nodeSelected.getparent().insert(row-1,nodeSelected)
             #self.model.removeRow(row+1, parent=index.parent())
         self.DisplayQTree()
         
+    def MoveOutNodeXML(self):
+        if len(self.treeView.selectionModel().selectedRows(column=IDCOL))==0:
+            return
+        index=self.treeView.selectionModel().selectedRows(column=IDCOL)[0]
+        uid=index.data()
+        #row=index.row()
+        self.olduid=uid
+        nodeSelected=self.NodeMap[uid]
+        if len(nodeSelected.xpath('@move'))>0:
+            moveOpr = nodeSelected.xpath('@move')[0].strip()
+            if moveOpr=="False":
+                return
+        
+        #xml_node = etree.Element("newnodeok")
+#        print("======================")
+#        print(etree.tostring(nodeSelected.getparent()).decode())
+        if nodeSelected.getparent().getparent() is not None:
+            nodeSelected.getparent().getparent().insert(0,nodeSelected)
+            #self.model.removeRow(row+1, parent=index.parent())
+            self.DisplayQTree()
     #Manual operation
     def MoveDownNode(self):
         if len(self.treeView.selectionModel().selectedRows(column=IDCOL))==0:
@@ -677,10 +748,10 @@ class Ui_MainWindow(object):
                 return
         
         #xml_node = etree.Element("newnodeok")
-        print("======================")
-
-        print(row)
-        print(etree.tostring(nodeSelected.getparent()).decode())
+#        print("======================")
+#
+#        print(row)
+#        print(etree.tostring(nodeSelected.getparent()).decode())
         if row+2 <= len(nodeSelected.getparent().getchildren()):
             nodeSelected.getparent().insert(row+2,nodeSelected)
             #self.model.removeRow(row, parent=index.parent())
